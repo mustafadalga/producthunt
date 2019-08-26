@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+ {% include 'partials/alert.html' %}
+
+    <main class="my-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">Product Creation</div>
+                        <div class="card-body">
+                            <form action="{% url 'create' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <label for="full_name" class="col-md-2 col-form-label">Başlık</label>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" name="title">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="full_name" class="col-md-2 col-form-label">Açıklama</label>
+                                    <div class="col-md-10">
+                                        <textarea cols="30" rows="5"  class="form-control" name="body"></textarea>
+                                    </div>
+                                </div>
+
+                                                             <div class="form-group row">
+                                    <label for="full_name" class="col-md-2 col-form-label">URL</label>
+                                    <div class="col-md-10">
+                                         <input type="text" class="form-control" name="url">
+                                    </div>
+                                </div>
+
+                                       <div class="form-group row">
+                                    <label for="full_name" class="col-md-2 col-form-label">İcon</label>
+                                    <div class="col-md-10">
+                                         <input type="file" class="form-control-file" name="icon">
+                                    </div>
+                                </div>
+
+
+
+                                                       <div class="form-group row">
+                                    <label for="full_name" class="col-md-2 col-form-label">İmage</label>
+                                    <div class="col-md-10">
+                                         <input type="file" class="form-control-file" name="image">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12 offset-md-2">
+                                    <button type="submit" class="btn btn-primary">Add Product</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+{% endblock %}

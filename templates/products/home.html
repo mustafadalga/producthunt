@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% include 'partials/alert.html' %}
+
+    {% if error %}
+        <div class="jumbotron jumbotron-fluid mt-5">
+            <div class="container">
+                <h1 class="display-4 text-center">{{ error }}</h1>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="container mt-5">
+        {% for product in products %}
+            <div class="row product pb-3 pt-3 border-bottom" style="cursor: pointer">
+                <div class="col-md-2 cursor text-center" onclick="window.location='{% url 'detay' product.id %}';"
+                     style="cursor: pointer">
+                    <img src="{{ product.image.url }}" alt="{{ product.title }}" class="img-thumbnail"
+                         style="max-height: 100px">
+                </div>
+                <div class="col-md-8">
+                    <h3>{{ product.title }}</h3>
+                    <p>{{ product.summary }} ...</p>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary btn-lg btn-block"
+                       href="javascript:{document.getElementById('upvote{{ product.id }}').submit()}">
+                        <span class="oi oi-caret-top"></span> Upvote {{ product.vote }}
+                    </a>
+                    <form action="{% url 'upvote' product.id %}" method="POST" id="upvote{{ product.id }}">
+                        {% csrf_token %}
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+
+{% endblock %}

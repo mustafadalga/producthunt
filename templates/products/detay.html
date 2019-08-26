@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+ {% include 'partials/alert.html' %}
+
+
+
+
+
+
+    <div class="container">
+        <div class="card">
+            <div class="container-fliud">
+                <div class="wrapper row">
+                    <img src="{{ product.icon.url }}" style="max-height: 100px;" class="offset-5 col-2 mb-5"/>
+
+                </div>
+                <div class="wrapper row">
+                    <div class="preview col-md-6">
+                        <div class="row justify-content-center">
+                            <img src="{{ product.image.url }}" class="img-fluid"/>
+                        </div>
+                        <div class="row mt-5">
+                            <h5 class="col-8"><span class="oi oi-magnifying-glass"></span> Hunter
+                                by {{ product.hunter.username }}</h5>
+                            <span class="col-4 text-right"><span
+                                    class="oi oi-clock"></span> {{ product.pub_date_pretty }}</span>
+                        </div>
+                    </div>
+                    <div class="details col-md-6">
+                        <h3 class="product-title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+                        <p class="product-description">{{ product.body }}</p>
+                        <a class="btn btn-primary btn-lg btn-block"
+                           href="javascript:{document.getElementById('upvote').submit()}">
+                            <span class="oi oi-caret-top"></span> Upvote {{ product.vote }}
+                        </a>
+
+                        <div class="action">
+                            <form action="{% url 'upvote' product.id %}" method="POST" id="upvote">
+                                {% csrf_token %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
