@@ -59,4 +59,8 @@ python manage.py collectstatic
 python manage.py runserver
 ```
 
+<hr>
 
+
+### Notlar
+* Python versiyonu:3.7.2
